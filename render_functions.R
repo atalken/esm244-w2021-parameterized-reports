@@ -28,6 +28,25 @@ country_name <- unique(salmon_imports$Country)
 for (country in country_name) {
   render_salmon_report(country)
 }
-```
 
-# Add your functions here for the 'your turn' part!
+#for each element in the vector (country_name) apply the render salmon function to EACH country
+
+
+# ------- PENGUINS RENDERING ------- #
+
+# Make a function to render it (more easily)
+render_penguin_report = function(species) {
+  rmarkdown::render(
+    input = "your_turn.Rmd", # What's the input file to render?
+    params = list(pick_species = species), # What are the parameters?
+    output_file = paste0(species, "_report", ".html") # What should I name the output file?
+  )
+}
+
+# A for loop
+
+penguin_subset <- unique(penguins$species)
+
+for (species in penguin_subset) {
+  render_penguin_report(species)
+}

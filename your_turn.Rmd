@@ -1,7 +1,8 @@
 ---
-title: "YOUR TURN! UPDATE THIS TITLE."
-author: "Your name"
-output: html_document
+title: "Penguin Parameterized Report."
+author: "Anna Talken"
+params:
+  pick_species: Adelie
 ---
 
 ### Your job: create a parameterized report using data from `penguins.csv`. 
@@ -15,5 +16,18 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{r}
+penguins <- read_csv(("penguins.csv"))
+
+penguin_subset <- penguins %>% 
+  filter(species == params$pick_species)
+
+ggplot(data = penguin_subset, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point() +
+  theme_minimal()
 ```
 
